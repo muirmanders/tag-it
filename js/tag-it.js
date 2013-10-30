@@ -187,6 +187,7 @@
                         // Sets the focus() to the input field, if the user
                         // clicks anywhere inside the UL. This is needed
                         // because the input field needs to be of a small size.
+                        that.tagInput.show();
                         that.tagInput.focus();
                     }
                 });
@@ -275,7 +276,9 @@
                     // Create a tag when the element loses focus.
                     // If autocomplete is enabled and suggestion was clicked, don't add it.
                     if (!that.tagInput.data('autocomplete-open')) {
-                        that.createTag(that._cleanedInput());
+                        if (that.createTag(that._cleanedInput()) !== false) {
+                            that.tagInput.hide();
+                        }
                     }
                 });
 
@@ -588,4 +591,3 @@
 
     });
 })(jQuery);
-
